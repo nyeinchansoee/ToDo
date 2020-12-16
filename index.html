@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://via.placeholder.com/50">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 
 <body>
-    <h3>My To Do List လုပ်ဆောင်ရန်</h3>
-    <div class="todo">
-        <div class="add-box" id="addBox">
-            <input type="text" id="input">
-            <button id="addBtn" class="btn btn-add" onclick="addList()">Add</button>
 
+    <div class="main">
+
+        <div class="content">
+            <h3>My To Do List &nbsp; <i class="fas fa-cogs fa-2x fa-spin"></i></h3>
+            <p>Design by Nyein Chan</p>
+            <div class="add-box" id="addBox">
+
+
+                <div class="form">
+                    <input type="text" id="input" placeholder="What will I do?"> &nbsp;
+                    <button type="submit" id="addBtn" class="btn btn-add" onclick="addList()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                </div>
+            </div>
+            <div class="list-group">
+                <ul class="list" id="list">
+                </ul>
+            </div>
         </div>
-        <hr>
-        <ul class="list" id="list">
-
-        </ul>
     </div>
     <script>
         let minTextLength = 3;
@@ -26,6 +38,7 @@
 
         let input = document.getElementById("input");
         let list = document.getElementById("list");
+        let z = document.getElementById(".z");
 
 
         function textFilter(x) {
@@ -45,12 +58,26 @@
             }
         }
 
+        function addList() {
+
+            let inputText = textFilter(input.value); //get
+
+            // console.log(inputText); //set
+            if (inputText) {
+                showList(inputText);
+                input.value = "";
+            }
+        }
+
         function showList(text) {
             list.innerHTML += `
                 <li class="list-item" id="list${i}">
-                    <button class="btn del-btn" onClick="deleteList(${i})" >Delete</button>
-                    <button class="btn edit-btn" onClick="editList(${i})">Edit</button>
                     <span id="listText${i}">${text}</span>
+                    <button class="btn del-btn" onClick="deleteList(${i})" ><i class="fa fa-trash" aria-hidden="true"></i>
+</button>
+                    <button class="btn edit-btn" onClick="editList(${i})">Edit</button>
+                    
+                    
                 </li> 
                 `;
             i++;
@@ -75,17 +102,51 @@
                 current.innerHTML = newText;
             }
         }
+        // //Get Date
 
-        function addList() {
+        // let date = new Date();
 
-            let inputText = textFilter(input.value); //get
+        // let day = date.toLocaleDateString();
 
-            // console.log(inputText); //set
-            if (inputText) {
-                showList(inputText);
-                input.value = "";
-            }
-        }
+        // h.innerHTML = getText;
+
+        // p.innerHTML = day;
+
+        // // Append Element h3 and p into Div One
+
+        // let d1 = document.querySelectorAll(".sec");
+
+        // for (i = 0; i < d1.length; i++) {
+        //     appendElement(d1[i], h);
+
+        //     appendElement(d1[i], p);
+        // }
+
+
+        // function doneList(listId) {
+        //     let current = document.getElementById(`listText${listId}`);
+        //     class done {
+        //         constructor(list) {
+
+        //         }
+        //     }
+
+        //     function get(done) {
+
+        //     }
+
+
+        // function doneList(listId) {
+        //     this.current("z");
+        // }
+        // }
+
+        // let doneConfirm = confirm(`Are you sure Done list'${currentText}'`);
+        // if (doneConfirm) {
+        //     list.z(current);
+        // } else {
+        //     console.log("Done cancel");
+        // }
     </script>
 
 </body>
